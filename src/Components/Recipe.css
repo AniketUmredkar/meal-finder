@@ -7,6 +7,10 @@
   font-size: 18px;
 }
 
+.heading-secondary {
+  text-align: center;
+}
+
 .display-img {
   width: 300px;
   border: 5px solid #fff;
