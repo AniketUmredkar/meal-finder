@@ -27,4 +27,6 @@
   text-align: center;
   line-height: 1.1;
   padding: 5px;
+  transition: 350ms ease;
+  z-index: 1;
 }

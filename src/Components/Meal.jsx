@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./Meal.css";
 
 function Meal(props) {
-  const [styleObj, setStyleObj] = useState({ display: "none" });
+  const [styleObj, setStyleObj] = useState({ opacity: 0 });
 
   return (
     <div
@@ -12,10 +12,10 @@ function Meal(props) {
         props.setDisplayMeal(props.meal);
       }}
       onMouseOver={() => {
-        setStyleObj({ display: "flex" });
+        setStyleObj({ opacity: 1 });
       }}
       onMouseLeave={() => {
-        setStyleObj({ display: "none" });
+        setStyleObj({ opacity: 0 });
       }}
     >
       <img
