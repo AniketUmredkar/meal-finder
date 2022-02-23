@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import "./Meal.css";
 
 function Meal(props) {
-  const [styleObj, setStyleObj] = useState({ opacity: 0 });
+  console.log("meal render");
 
   return (
     <div
@@ -11,23 +10,15 @@ function Meal(props) {
       onClick={() => {
         props.setDisplayMeal(props.meal);
       }}
-      onMouseOver={() => {
-        setStyleObj({ opacity: 1 });
-      }}
-      onMouseLeave={() => {
-        setStyleObj({ opacity: 0 });
-      }}
     >
       <img
         className="meal-img"
         src={props.meal.strMealThumb}
         alt={props.meal.strMeal}
       ></img>
-      <div className="hover-name" style={styleObj}>
-        {props.meal.strMeal}
-      </div>
+      <div className="hover-name">{props.meal.strMeal}</div>
     </div>
   );
 }
 
-export default Meal;
+export default React.memo(Meal);

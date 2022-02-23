@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsShuffle } from "react-icons/bs";
 import "./App.css";
-import Meal from "./Components/Meal";
+import MealList from "./Components/MealList";
 import Recipe from "./Components/Recipe";
 
 function App() {
-  const [keyword, setKeyword] = useState("");
+  console.log("App render");
+  const userInput = useRef();
   const [currKeyword, setCurrKeyword] = useState("");
-  const [meals, setMeals] = useState();
-  const [displayMeal, setDisplayMeal] = useState();
+  const [meals, setMeals] = useState(null);
+  const [displayMeal, setDisplayMeal] = useState(null);
 
   async function search() {
+    const keyword = userInput.current.value;
     if (keyword === "") {
       alert("Please enter a search term");
       return;
@@ -21,8 +23,9 @@ function App() {
     );
     const data = await response.json();
     setMeals(data.meals);
-    setDisplayMeal("");
+    setDisplayMeal(null);
     setCurrKeyword(keyword);
+    userInput.current.value = "";
   }
 
   async function random() {
@@ -41,11 +44,8 @@ function App() {
       <div className="form-container">
         <form>
           <input
+            ref={userInput}
             placeholder="Search for meals or keywords"
-            value={keyword}
-            onChange={(e) => {
-              setKeyword(e.target.value);
-            }}
           ></input>
           <button
             className="btn btn-search"
@@ -67,24 +67,14 @@ function App() {
           <BsShuffle></BsShuffle>
         </button>
       </div>
-      {meals ? (
-        <>
-          <div className="message">Search results for '{currKeyword}':</div>
-          <div className="meal-container">
-            {meals.map((meal, index) => {
-              return (
-                <Meal
-                  meal={meal}
-                  key={index}
-                  setDisplayMeal={setDisplayMeal}
-                ></Meal>
-              );
-            })}
-          </div>
-        </>
-      ) : currKeyword === "" ? null : (
+      {currKeyword === "" ? null : meals ? (
+        <div className="message">Search results for '{currKeyword}':</div>
+      ) : (
         <div className="message">Sorry! There are no search results</div>
       )}
+      {meals ? (
+        <MealList meals={meals} setDisplayMeal={setDisplayMeal}></MealList>
+      ) : null}
       {displayMeal ? <Recipe displayMeal={displayMeal}></Recipe> : null}
     </div>
   );
