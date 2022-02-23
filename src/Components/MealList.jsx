@@ -2,7 +2,7 @@ import React from "react";
 import Meal from "./Meal";
 
 function MealList(props) {
-  console.log("meallist render");
+  // console.log("meallist render");
   return (
     <div className="meal-container">
       {props.meals.map((meal, index) => {

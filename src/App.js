@@ -6,7 +6,7 @@ import MealList from "./Components/MealList";
 import Recipe from "./Components/Recipe";
 
 function App() {
-  console.log("App render");
+  // console.log("App render");
   const userInput = useRef();
   const [currKeyword, setCurrKeyword] = useState("");
   const [meals, setMeals] = useState(null);

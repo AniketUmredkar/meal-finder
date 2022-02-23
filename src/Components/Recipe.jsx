@@ -3,7 +3,7 @@ import Ingredient from "./Ingredient";
 import "./Recipe.css";
 
 function Recipe(props) {
-  console.log("recipe render");
+  // console.log("recipe render");
   return (
     <div className="recipe-container">
       <h2 className="heading-secondary">{props.displayMeal.strMeal}</h2>

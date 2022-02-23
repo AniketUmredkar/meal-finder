@@ -2,7 +2,7 @@ import React from "react";
 import "./Meal.css";
 
 function Meal(props) {
-  console.log("meal render");
+  // console.log("meal render");
 
   return (
     <div
